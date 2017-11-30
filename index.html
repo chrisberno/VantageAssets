@@ -7,10 +7,12 @@
           <a-asset-item id="text-obj" src="https://raw.githubusercontent.com/JamesALark/VantageAssets/master/OBJtest/TestText.obj"></a-asset-item>
           <a-asset-item id="text-mtl" src="https://raw.githubusercontent.com/JamesALark/VantageAssets/master/OBJtest/TestText.mtl"></a-asset-item>
           <a-asset-item id="tree" src="https://raw.githubusercontent.com/JamesALark/VantageAssets/master/Assets/Models/GreenTorus.gltf"></a-asset-item>
+          <video id="beach" autoplay loop="true" src="VantageAssets/Assets/Video/BeachTestVideo.mp4"></video>
         </a-assets>
   	  <a-marker preset='hiro'>
             <a-box position='0 0.5 0' material='color: black;'></a-box>
             <a-entity gltf-model="#tree"></a-entity>
+            <a-video src="#beach" width="16" height="9" position="0 0 -20"></a-video>
   	  </a-marker>
   	  <a-marker preset='kanji'>
             <a-box position='0 0.5 0' material='color: black;'></a-box>
