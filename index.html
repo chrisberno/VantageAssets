@@ -11,6 +11,11 @@
         </a-assets>
   	  <a-marker preset='hiro'>
             <a-entity gltf-model="#tree"></a-entity>
+                  <a-animation attribute="rotation"
+                     dur="10000"
+                     fill="forwards"
+                     to="0 360 0"
+                     repeat="indefinite"></a-animation>
             <a-video src="#beach" width="16" height="9" position="0 0 -20"></a-video>
   	  </a-marker>
   	  <a-marker preset='kanji'>
