@@ -4,8 +4,7 @@
   <body style='margin : 0px; overflow: hidden;'>
     <a-scene embedded arjs>
         <a-assets>
-          <a-asset-item id="text-obj" src="https://raw.githubusercontent.com/JamesALark/VantageAssets/master/OBJtest/TestText.obj"></a-asset-item>
-          <a-asset-item id="text-mtl" src="https://raw.githubusercontent.com/JamesALark/VantageAssets/master/OBJtest/TestText.mtl"></a-asset-item>
+          <a-asset-item id="text" src="https://raw.githubusercontent.com/JamesALark/VantageAssets/master/OBJtest/TestText.gltf"></a-asset-item>
           <a-asset-item id="tree" src="https://raw.githubusercontent.com/JamesALark/VantageAssets/master/microphone/microphone.gltf"></a-asset-item>
           <video id="beach" autoplay loop="true" src="https://cdn.rawgit.com/JamesALark/VantageAssets/Assets/Video/BeachTestVideo.mp4"></video>
           <img id="my-image" src="https://cdn.rawgit.com/JamesALark/VantageAssets/blob/master/Assets/Markers/VantageQRMarker.png">
@@ -20,7 +19,7 @@
             <a-video src="#beach" width="16" height="9" position="0 0 -20"></a-video>
   	  </a-marker>
   	  <a-marker preset='kanji'>
-            <a-image src="https://cdn.rawgit.com/JamesALark/VantageAssets/blob/master/Assets/Markers/VantageQRMarker.png"></a-image>
+            <a-entity gltf-model="#text"></a-entity>
   	  </a-marker>
   	  <a-entity camera></a-entity>
     </a-scene>
