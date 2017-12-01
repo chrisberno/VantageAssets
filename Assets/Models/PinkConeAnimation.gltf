@@ -1,0 +1,159 @@
+{
+  "accessors": [
+    {
+      "name": "pCone1_1_positions",
+      "componentType": 5126,
+      "count": 42,
+      "min": [
+        -1,
+        -4.970911026000977,
+        -1
+      ],
+      "max": [
+        1,
+        -2.9709110260009766,
+        1
+      ],
+      "type": "VEC3",
+      "bufferView": 0,
+      "byteOffset": 0
+    },
+    {
+      "name": "pCone1_1_normals",
+      "componentType": 5126,
+      "count": 42,
+      "min": [
+        -0.8944270014762878,
+        -1,
+        -0.8944270014762878
+      ],
+      "max": [
+        0.8944270014762878,
+        1,
+        0.8944270014762878
+      ],
+      "type": "VEC3",
+      "bufferView": 0,
+      "byteOffset": 504
+    },
+    {
+      "name": "pCone1_1_texcoords",
+      "componentType": 5126,
+      "count": 42,
+      "min": [
+        0.25,
+        0
+      ],
+      "max": [
+        0.75,
+        1
+      ],
+      "type": "VEC2",
+      "bufferView": 1,
+      "byteOffset": 0
+    },
+    {
+      "name": "pCone1_1_0_indices",
+      "componentType": 5123,
+      "count": 114,
+      "min": [
+        0
+      ],
+      "max": [
+        41
+      ],
+      "type": "SCALAR",
+      "bufferView": 2,
+      "byteOffset": 0
+    }
+  ],
+  "asset": {
+    "generator": "obj2gltf",
+    "version": "2.0"
+  },
+  "buffers": [
+    {
+      "name": "PinkConeAnimation",
+      "byteLength": 1572,
+      "uri": "data:application/octet-stream;base64,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"
+    }
+  ],
+  "bufferViews": [
+    {
+      "name": "bufferView_0",
+      "buffer": 0,
+      "byteLength": 1008,
+      "byteOffset": 0,
+      "byteStride": 12,
+      "target": 34962
+    },
+    {
+      "name": "bufferView_1",
+      "buffer": 0,
+      "byteLength": 336,
+      "byteOffset": 1008,
+      "byteStride": 8,
+      "target": 34962
+    },
+    {
+      "name": "bufferView_2",
+      "buffer": 0,
+      "byteLength": 228,
+      "byteOffset": 1344,
+      "target": 34963
+    }
+  ],
+  "materials": [
+    {
+      "name": "initialShadingGroup",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          0.46,
+          0.05,
+          0.5,
+          1
+        ],
+        "metallicFactor": 0,
+        "roughnessFactor": 1
+      },
+      "emissiveFactor": [
+        0,
+        0,
+        0
+      ],
+      "alphaMode": "OPAQUE",
+      "doubleSided": false
+    }
+  ],
+  "meshes": [
+    {
+      "name": "pCone1_1",
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 0,
+            "NORMAL": 1,
+            "TEXCOORD_0": 2
+          },
+          "indices": 3,
+          "material": 0,
+          "mode": 4
+        }
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "name": "pCone1",
+      "mesh": 0
+    }
+  ],
+  "scene": 0,
+  "scenes": [
+    {
+      "nodes": [
+        0
+      ]
+    }
+  ]
+}
