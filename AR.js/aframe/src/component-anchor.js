@@ -74,15 +74,11 @@ AFRAME.registerComponent('arjs-anchor', {
 			// honor this.data.preset
 			if( _this.data.preset === 'hiro' ){
 				arProfile.defaultMarkerParameters.type = 'pattern'
-				arProfile.defaultMarkerParameters.patternUrl = THREEx.ArToolkitContext.baseURL+'examples/marker-training/examples/pattern-files/pattern-hiro.patt'
+				arProfile.defaultMarkerParameters.patternUrl = THREEx.ArToolkitContext.baseURL+'examples/marker-training/examples/pattern-files/pwcQRmarker.patt'
 				arProfile.defaultMarkerParameters.markersAreaEnabled = false
 			}else if( _this.data.preset === 'kanji' ){
 				arProfile.defaultMarkerParameters.type = 'pattern'
 				arProfile.defaultMarkerParameters.patternUrl = THREEx.ArToolkitContext.baseURL+'examples/marker-training/examples/pattern-files/pattern-kanji.patt'
-				arProfile.defaultMarkerParameters.markersAreaEnabled = false
-			}else if( _this.data.preset === 'custom' ){
-				arProfile.defaultMarkerParameters.type = 'pattern'
-				arProfile.defaultMarkerParameters.patternUrl = THREEx.ArToolkitContext.baseURL+'examples/marker-training/examples/pattern-files/pwcQRpattern.patt'
 				arProfile.defaultMarkerParameters.markersAreaEnabled = false
 			}else if( _this.data.preset === 'area' ){
 				arProfile.defaultMarkerParameters.type = 'barcode'
