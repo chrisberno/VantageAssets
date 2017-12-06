@@ -1,4 +1,5 @@
 <html>
+<script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
 <script src="http://rawgit.com/peterdhl88/VantageAssets/master/AR.js/aframe/build/aframe-ar.js"> </script>
   <body style='margin : 0px; overflow: hidden;'>
     <a-scene embedded arjs>
@@ -7,10 +8,10 @@
           <a-asset-item id="text-mtl" src="http://rawgit.com/peterdhl88/VantageAssets/master/OBJtest/TestText.mtl"></a-asset-item>
           <a-asset-item id="tree" src="http://rawgit.com/peterdhl88/VantageAssets/master/Assets/Models/GreenTorus.gltf"></a-asset-item>
         </a-assets>
-      <a-marker preset='custom' type='pattern' url='https://peterdhl88.github.io/VantageAssets/AR.js/three.js/examples/marker-training/examples/pattern-files/pattern-taijitu.patt'>
-        <a-box position='0 0.5 0' material='color: black;'></a-box>
-        <a-entity gltf-model="#tree"></a-entity>
-      </a-marker>
+        <a-marker preset='custom' type='pattern' url='AR.js/three.js/examples/marker-training/examples/pattern-files/pattern-taijitu.patt'>
+          <a-box position='0 0.5 0' material='color: black;'></a-box>
+          <a-entity gltf-model="#tree"></a-entity>
+        </a-marker>
   	  <a-entity camera></a-entity>
     </a-scene>
   </body>
