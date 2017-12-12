@@ -10,17 +10,18 @@
           init: function () {
               this.el.addEventListener('click', function (evt) {
                 console.log('I was clicked at: ', evt.detail.intersection.point);
+              });
 
-                var targetEl = this.data.target;  // Target to change material.
+              var el = this.el;
+              var targetEl = this.data.target;  // Target to change material.
 
-                el.addEventListener('click', function () {
-                  var mesh = targetEl.getObject3D('mesh');
-                  mesh.traverse(function( child ) { 
-                    if ( child instanceof THREE.Mesh ) {
-                      child.material = Red;
-                    }
-                  });  // Do your logic here.
-                });
+              el.addEventListener('click', function () {
+                var mesh = targetEl.getObject3D('mesh');
+                mesh.traverse(function( child ) { 
+                  if ( child instanceof THREE.Mesh ) {
+                    child.material = Red;
+                  }
+                });  // Do your logic here.
               });
             }
           });
