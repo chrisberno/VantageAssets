@@ -2,39 +2,6 @@
 <script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
 <script src="https://rawgit.com/peterdhl88/VantageAssets/master/AR.js/aframe/build/aframe-ar.js"> </script>
   <body style='margin : 0px; overflow: hidden;'>
-    <script>
-      AFRAME.registerComponent('cursor-listener', {
-          schema: {
-            target: {type: 'selector'}
-          },
-          init: function () {
-              this.el.addEventListener('click', function (evt) {
-                console.log('I was clicked at: ', evt.detail.intersection.point);
-              });
-
-              var el = this.el;
-              var targetEl = this.data.target;  // Target to change material.
-
-              el.addEventListener('click', function () {
-                var mesh = targetEl.getObject3D('mesh');
-                mesh.traverse(function( child ) { 
-                  if ( child instanceof THREE.Mesh ) {
-                    child.material = Red;
-                  }
-                });  // Do your logic here.
-              });
-            }
-          });
-
-        AFRAME.registerComponent('collider-check', {
-          dependencies: ['raycaster'],
-          init: function () {
-            this.el.addEventListener('raycaster-intersected', function () {
-              console.log('Player hit something!');
-            });
-          }
-        });
-      </script>
     <a-scene embedded arjs>
         <a-assets>
           <a-asset-item id="text" src="https://cdn.rawgit.com/peterdhl88/VantageAssets/master/OBJtest/TestText.gltf"></a-asset-item>
@@ -42,9 +9,11 @@
         </a-assets>
       <a-marker preset='custom' type='pattern' url='AR.js/three.js/examples/marker-training/examples/pattern-files/pattern-taijitu.patt'>
         <a-entity gltf-model="#tree"></a-entity>
-        <a-entity id="box" cursor-listener geometry="primitive: box" material="color: blue"></a-entity>
+        <a-entity id="box" geometry="primitive: box" material="color: blue"
+        event-set__enter="_event: mouseenter; material.color: yellowgreen; scale: 3 1 1"
+        event-set__leave="_event: mouseleave; material.color: skyblue; scale: 1 1 1"></a-entity>
   	  </a-marker>
-  	  <a-entity camera look-controls mouse-cursor></a-entity>
+  	  <a-entity camera mouse-cursor></a-entity>
     </a-scene>
   </body>
 </html>
