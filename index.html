@@ -5,12 +5,26 @@
     <script>
       AFRAME.registerComponent('cursor-listener', {
           init: function () {
-                this.el.addEventListener('click', function (evt) {
-              console.log('I was clicked at: ', evt.detail.intersection.point);
-              evt.detail.el.setAttribute('obj-model', 'mtl', '#red');
-            });
-          }
-        });
+              this.el.addEventListener('click', function (evt) {
+                console.log('I was clicked at: ', evt.detail.intersection.point);
+
+                var targetEl = this.data.target;  // Target to change material.
+
+                el.addEventListener('click', function () {
+                  var mesh = targetEl.getObject3D('mesh');
+                  mesh.traverse(function( child ) { 
+                    if ( child instanceof THREE.Mesh ) {
+                      if (child.material.name == "xyz")  { //xyz from .mtl file
+                          child.material = Red;// black is a meshphong material                                                                                                       
+                          child.castShadow = true;
+                          child.receiveShadow = true;
+                      }
+                    }
+                  });  // Do your logic here.
+                });
+              });
+            }
+          });
 
         AFRAME.registerComponent('collider-check', {
           dependencies: ['raycaster'],
