@@ -8631,6 +8631,38 @@ AFRAME.registerSystem('arjs', {
 				}
 			}
 
+			//////////////////////////////////////////////////////////////////////////////
+			//		custom button by Pete
+			//////////////////////////////////////////////////////////////////////////////
+
+			var delayInMilliseconds = 1000; //1 second
+			delayInMilliseconds *= 5;
+			
+			setTimeout(function() {
+				initFooterUI()
+			}, delayInMilliseconds);
+
+			
+			function initFooterUI(){
+				// get or create containerElement
+				var containerElement = document.querySelector('#arjsDebugUIContainer')
+				if( containerElement === null ){
+					containerElement = document.createElement('div')
+					containerElement.id = 'arjsDebugUIContainer'
+					containerElement.setAttribute('style', 'position: fixed; bottom: 10px; width:100%; text-align: center; z-index: 1;color: grey;')
+					document.body.appendChild(containerElement)
+				}
+
+				// 1. Create the button
+				var button = document.createElement("button");
+				button.innerHTML = "Do Something";
+				button.onclick = function(){
+					location.href = 'http://google.com';
+					return false;
+				};
+				containerElement.appendChild(button)
+			}
+
 
 			//////////////////////////////////////////////////////////////////////////////
 			//		honor .debugUIEnabled
