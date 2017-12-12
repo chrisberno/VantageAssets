@@ -35,7 +35,7 @@
           }
         });
       </script>
-    <a-scene embedded arjs cursor="rayOrigin: 'mouse'">
+    <a-scene embedded arjs>
         <a-assets>
           <a-asset-item id="text" src="https://cdn.rawgit.com/peterdhl88/VantageAssets/master/OBJtest/TestText.gltf"></a-asset-item>
           <a-asset-item id="tree" src="https://cdn.rawgit.com/peterdhl88/VantageAssets/master/microphone/microphone.gltf"></a-asset-item>
@@ -44,7 +44,7 @@
         <a-entity gltf-model="#tree"></a-entity>
         <a-entity id="box" cursor-listener geometry="primitive: box" material="color: blue"></a-entity>
   	  </a-marker>
-  	  <a-entity camera></a-entity>
+  	  <a-entity camera look-controls mouse-cursor></a-entity>
     </a-scene>
   </body>
 </html>
