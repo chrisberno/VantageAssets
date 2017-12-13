@@ -1,63 +1,74 @@
 <html>
 <script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
 <script src="https://rawgit.com/peterdhl88/VantageAssets/master/AR.js/aframe/build/aframe-ar.js"> </script>
-  <head>
-    <style>
-      button {
-        margin-top: 20px;
-        line-height: 60px;
-        font-weight: bold;
-        padding: 0 40px;
-        background: rgba(127, 127, 127, 0.5);
-        border: none;
+
+<head>
+  <style>
+    button {
+      margin-top: 20px;
+      line-height: 60px;
+      font-weight: bold;
+      padding: 0 40px;
+      background: rgba(127, 127, 127, 0.5);
+      border: none;
+    }
+
+    button:hover {
+      background: rgba(127, 127, 127, 0.75);
+    }
+  </style>
+</head>
+
+<body style='margin : 0px; overflow: hidden;'>
+  <script>
+    AFRAME.registerComponent('model', {
+      init: function () {
+        console.log('I was clicked at: ');
       }
-      button:hover {
-        background: rgba(127, 127, 127, 0.75);
-      }
-      </style>
-  </head>
-  <body style='margin : 0px; overflow: hidden;'>
-    <script>
-      AFRAME.registerComponent('cursor-listener', {
-          schema: {
-            target: {type: 'selector'}
-          },
-          init: function () {
-              this.el.addEventListener('click', function (evt) {
-                console.log('I was clicked at: ', evt.detail.intersection.point);
-              });
+    });
 
-              var el = this.el;
-              var targetEl = this.data.target;  // Target to change material.
-
-              el.addEventListener('click', function () {
-                var mesh = targetEl.getObject3D('mesh');
-                mesh.traverse(function( child ) { 
-                  if ( child instanceof THREE.Mesh ) {
-                    child.material = Red;
-                  }
-                });  // Do your logic here.
-              });
-            }
-          });
-
-        AFRAME.registerComponent('collider-check', {
-          dependencies: ['raycaster'],
-          init: function () {
-            this.el.addEventListener('raycaster-intersected', function () {
-              console.log('Player hit something!');
-            });
-          }
+    AFRAME.registerComponent('cursor-listener', {
+      schema: {
+        target: { type: 'selector' }
+      },
+      init: function () {
+        this.el.addEventListener('click', function (evt) {
+          console.log('I was clicked at: ', evt.detail.intersection.point);
         });
-      </script>
-    <a-scene embedded arjs id="canvasx"y>
-        <a-assets>
-          <a-asset-item id="tree" src="https://cdn.rawgit.com/peterdhl88/VantageAssets/master/anim/Unity2Skfb.gltf"></a-asset-item>
-        </a-assets>
-      <a-marker preset='custom' type='pattern' url='AR.js/three.js/examples/marker-training/examples/pattern-files/pwcQRmarkerPETE.patt'>
-        <a-entity gltf-model="#tree"></a-entity>
-      </a-marker>
-  	  <a-entity camera></a-entity>
-    </a-scene>
-  </body>
+
+        var el = this.el;
+        var targetEl = this.data.target;  // Target to change material.
+
+        el.addEventListener('click', function () {
+          var mesh = targetEl.getObject3D('mesh');
+          mesh.traverse(function (child) {
+            if (child instanceof THREE.Mesh) {
+              child.material = Red;
+            }
+          });  // Do your logic here.
+        });
+      }
+    });
+
+    AFRAME.registerComponent('collider-check', {
+      dependencies: ['raycaster'],
+      init: function () {
+        this.el.addEventListener('raycaster-intersected', function () {
+          console.log('Player hit something!');
+        });
+      }
+    });
+  </script>
+  <a-scene embedded arjs>
+    <a-assets>
+      <a-entity model></a-entity>
+      <a-asset-item id="tree" src="https://cdn.rawgit.com/peterdhl88/VantageAssets/master/anim/Unity2Skfb.gltf"></a-asset-item>
+    </a-assets>
+    <a-marker-camera preset='custom' type='pattern' url='AR.js/three.js/examples/marker-training/examples/pattern-files/pwcQRmarkerPETE.patt'>
+      <a-entity gltf-model="#tree"></a-entity>
+    </a-marker-camera>
+    <a-entity camera></a-entity>
+  </a-scene>
+</body>
+
 </html>
