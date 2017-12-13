@@ -20,56 +20,15 @@
 </head>
 
 <body style='margin : 0px; overflow: hidden;'>
-  <script>
-    AFRAME.registerComponent('model', {
-      init: function () {
-        console.log('I was clicked at: ');
-      }
-    });
-
-    AFRAME.registerComponent('cursor-listener', {
-      schema: {
-        target: { type: 'selector' }
-      },
-      init: function () {
-        this.el.addEventListener('click', function (evt) {
-          console.log('I was clicked at: ', evt.detail.intersection.point);
-        });
-
-        var el = this.el;
-        var targetEl = this.data.target;  // Target to change material.
-
-        el.addEventListener('click', function () {
-          var mesh = targetEl.getObject3D('mesh');
-          mesh.traverse(function (child) {
-            if (child instanceof THREE.Mesh) {
-              child.material = Red;
-            }
-          });  // Do your logic here.
-        });
-      }
-    });
-
-    AFRAME.registerComponent('collider-check', {
-      dependencies: ['raycaster'],
-      init: function () {
-        this.el.addEventListener('raycaster-intersected', function () {
-          console.log('Player hit something!');
-        });
-      }
-    });
-  </script>
   <a-scene embedded arjs>
     <a-assets>
       <a-entity model></a-entity>
       <a-asset-item id="tree" src="https://cdn.rawgit.com/peterdhl88/VantageAssets/master/anim/Unity2Skfb.gltf"></a-asset-item>
     </a-assets>
-    <a-marker preset='custom' type='pattern' url='AR.js/three.js/examples/marker-training/examples/pattern-files/pwcQRmarkerPETE.patt'>
+    <a-marker-camera preset='custom' type='pattern' url='AR.js/three.js/examples/marker-training/examples/pattern-files/pwcQRmarkerPETE.patt'>
       <a-entity gltf-model="#tree"></a-entity>
       <a-entity id="box" cursor-listener geometry="primitive: box" material="color: blue"></a-entity>
-    </a-marker>
-    <a-entity camera></a-entity>
+    </a-marker-camera>
   </a-scene>
 </body>
-
 </html>
