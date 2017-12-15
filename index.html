@@ -1,82 +1,67 @@
 <html>
-<script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
-<script src="https://rawgit.com/peterdhl88/VantageAssets/master/AR.js/aframe/build/aframe-ar.js"></script>
-<script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v3.13.1/dist/aframe-extras.min.js"></script>
-</script>
-
-<head>
-  <style>
-    button {
-      margin-top: 20px;
-      line-height: 60px;
-      font-weight: bold;
-      padding: 0 40px;
-      background: rgba(127, 127, 127, 0.5);
-      border: none;
-    }
-
-    button:hover {
-      background: rgba(127, 127, 127, 0.75);
-    }
-  </style>
-  <script>
-    // Or inline before the <a-scene>.
-    AFRAME.registerComponent('update-pos', {
-      init: function () {
-        lerpVec3 = new THREE.Vector3();
-        slerpQuart = new THREE.Quaternion();
-        origPos = new THREE.Vector3().copy(document.querySelector("#scene-model").object3D.position);
-        origRot = new THREE.Quaternion().copy(document.querySelector("#scene-model").object3D.quaternion);
-
-        model = document.querySelector("#scene-model").object3D;
-        target = document.querySelector("#target").object3D;
-
-        function Update() {
-          //console.log(document.querySelector("a-marker").object3D.visible);
-          console.log(document.querySelector("#target").object3D.position);
-          el.setAttribute('position', 1);
-
-          //el.components.lerp.toPosition(el.positon, document.querySelector("#target-pos").object3D.position);
-        }
-      },
-      tick: function (time, timeDelta) {
-
-        function lerp(value1, value2, amount) {
-          amount = amount < 0 ? 0 : amount;
-          amount = amount > 1 ? 1 : amount;
-          return value1 + (value2 - value1) * amount;
-        }
-
-        //var lerpVec3 = new THREE.Vector3(lerp(model.position.x, target.position.x, timeDelta), lerp(model.position.y, target.position.y, timeDelta), lerp(model.position.z, target.position.z, timeDelta));
-        document.querySelector("#scene-model").setAttribute('position', lerpVec3.lerpVectors(model.position, target.getWorldPosition(), timeDelta / 100));
-        THREE.Quaternion.slerp( model.quaternion, target.getWorldQuaternion(), slerpQuart, timeDelta / 100);
-        document.querySelector("#scene-model").setAttribute('quaternion', slerpQuart);
-        //console.log(model.rotation.toVector3());
-      }
-
-      
-      
-    });
-
-    AFRAME.registerComponent('hello-world', {
-      init: function () {
-        console.log('Hello, World!');
-      }
-    });
+  <script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
+  <script src="https://rawgit.com/peterdhl88/VantageAssets/master/AR.js/aframe/build/aframe-ar.js"></script>
+  <script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v3.13.1/dist/aframe-extras.min.js"></script>
   </script>
-</head>
 
-<body style='margin : 0px; overflow: hidden;'>
-  <a-scene embedded arjs>
-    <a-assets>
-      <a-asset-item id="stage" src="https://cdn.rawgit.com/peterdhl88/VantageAssets/master/anim/Unity2Skfb.gltf"></a-asset-item>
-    </a-assets>
-    <a-marker preset='custom' type='pattern' url='https://cdn.rawgit.com/peterdhl88/VantageAssets/master/AR.js/three.js/examples/marker-training/examples/pattern-files/pattern-taijitu.patt'>
-      <a-entity id="target" position="3 5 -3.5" rotation="75 180 0" ></a-entity>
-    </a-marker>
-    <a-entity id="scene-model" gltf-model="#stage" animation-mixer update-pos></a-entity>
-    <a-camera-static/>
-  </a-scene>
-</body>
+  <head>
+    <style>
+      button {
+        margin-top: 20px;
+        line-height: 60px;
+        font-weight: bold;
+        padding: 0 40px;
+        background: rgba(127, 127, 127, 0.5);
+        border: none;
+      }
 
+      button:hover {
+        background: rgba(127, 127, 127, 0.75);
+      }
+    </style>
+    <script>
+      // Or inline before the <a-scene>.
+      AFRAME.registerComponent('update-pos', {
+        init: function () {
+          lerpVec3 = new THREE.Vector3();
+          slerpQuart = new THREE.Quaternion();
+
+          targetPos = new THREE.Vector3();
+          targetRot = new THREE.Quaternion();
+
+          model = document.querySelector("#scene-model");
+          target = document.querySelector("#target");
+        },
+        tick: function (time, timeDelta) {
+
+          if (document.querySelector("a-marker").object3D.visible)
+          {
+            if (model.object3D.position.distanceTo(target.object3D.getWorldPosition()) > 1)
+            {
+              targetPos = target.object3D.getWorldPosition();
+              targetRot = target.object3D.getWorldQuaternion();
+            }
+          }
+
+          model.setAttribute('position', lerpVec3.lerpVectors(model.object3D.position, targetPos, timeDelta / 200));
+
+          THREE.Quaternion.slerp( model.object3D.quaternion, targetRot, slerpQuart, timeDelta / 200);
+          model.setAttribute('quaternion', slerpQuart);
+        }
+      });
+    </script>
+  </head>
+
+  <body style='margin : 0px; overflow: hidden;'>
+    <a-scene embedded arjs>
+      <a-assets>
+        <a-asset-item id="stage" src="https://cdn.rawgit.com/peterdhl88/VantageAssets/master/anim/Unity2Skfb.gltf"></a-asset-item>
+      </a-assets>
+      <a-marker preset='custom' type='pattern' url='https://cdn.rawgit.com/peterdhl88/VantageAssets/master/AR.js/three.js/examples/marker-training/examples/pattern-files/pattern-taijitu.patt'>
+        <a-entity id="target" position="3 5 -3.5" rotation="75 180 0" ></a-entity>
+      </a-marker>
+      <a-entity id="scene-model" gltf-model="#stage" animation-mixer update-pos></a-entity>
+      <a-camera-static/>
+    </a-scene>
+  </body>
 </html>
